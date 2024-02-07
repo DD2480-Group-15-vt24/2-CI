@@ -1,0 +1,32 @@
+name: Lint and Format and Test
+
+on:
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint and format
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: 📦 Install Modules
+        run: pip install -r requirements.txt
+
+      - name: ⚡️ Run linting check
+        run: black .
+
+      - name: ⚫️ Run formatting check
+        run: ruff .
+
+      - name: 🤖 Run Tests
+        run: pytest
