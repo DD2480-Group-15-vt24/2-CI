@@ -26,15 +26,18 @@
 
 ### 1. Create a virtual envrionment called `venv`
 
-`python3 -m venv venv`
+Mac/Linux:`python3 -m venv venv`
+Windows: python -m venv venv
 
 ### 2. Activate the venv
 
-`source venv/bin/activate`
+Mac/Linux:`source venv/bin/activate`
+Windows: venv/bin/Activate.ps1
 
 ### 3. Install the dependencies
 
-`python3 -m pip install -r requirements.txt`
+Mac/Linux:`python3 -m pip install -r requirements.txt`
+Windows: python -m pip install -r requirements.txt
 
 ### 4. Run the server
 
@@ -48,7 +51,7 @@ Black is used for formatting the procjet. Format the code by using `black .`
 
 ## Running the test suite
 
-Run `pystest` from the root
+Run `pytest` from the root
 
 ## How to contribute
 
@@ -84,6 +87,7 @@ TODO...
 - Love Lindgren
 - Selma Özdere
 - Siham Shahoud
+- Albin Wikström Kempe:
 
 # Statement of contribution
 
@@ -96,3 +100,6 @@ Love Lindgren:
 Siham Shahoud:
 
 Selma Özdere:
+
+Albin Wikström Kempe:
+
