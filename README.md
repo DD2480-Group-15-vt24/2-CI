@@ -76,7 +76,12 @@ Open a Pull Request (PR): Go to the original repository on GitHub and open a pul
 
 ## Way of working
 
-TODO...
+Based on the Essence standard v1.2 criteria for evaluating a team's way of working, our team is currently at the "In Use" stage because we have picked the main practices and tools we need to work together, and we have atred using them in our work.
+
+We are still a new team and are still facing some challenges when it comes to communicating effectively, this is still because we use Discord poorly and the language barrier.
+
+To move to the "In Place" and "Working well" the team we mainly have to focus on communicating, and doing so on a daily basis. This to get to know how all of us work and to see the work-progress. We also have to write clearer issues and work trough the more complicated/unclear instructions together. 
+
 
 ## Contributors
 
