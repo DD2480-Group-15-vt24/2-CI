@@ -64,6 +64,7 @@ def test_webhook_actions(
             json={
                 "repository": {"clone_url": "https://github.com/example/repo.git"},
                 "ref": "refs/heads/main",
+                "head_commit": {"id": "1234"},
             },
         )
         assert response.status_code == expected_status
