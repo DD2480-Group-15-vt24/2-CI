@@ -52,7 +52,7 @@ def test_create_commit_status(mock_post, status_code, expected_result):
     repo = "repo"
     sha = "1234"
     state = State.SUCCESS
-    token = "token"
+    token = "NO_API_TOKEN"
 
     result = create_commit_status(owner, repo, sha, state)
 
