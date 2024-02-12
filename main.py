@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request, HTTPException
 from src.black import run_black_format_check
 from src.git import clone_repo
 from src.pytest import run_pytest_test_suite
-
+from db import insert_row
 app = FastAPI()
 
 
@@ -25,7 +25,9 @@ async def webhook_test(request: Request):
     repo_url = payload["repository"]["clone_url"]
     branch = payload["ref"].split("/")[-1]
     repo_dir = clone_repo(repo_url, branch)
-    success = run_pytest_test_suite(repo_dir)
+    success,logs = run_pytest_test_suite(repo_dir)
+    insert_row(repo_url, logs)
+
     # here I have to add rows to the data base and db we --
 
     if success:
