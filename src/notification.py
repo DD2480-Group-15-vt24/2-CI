@@ -1,4 +1,5 @@
 import requests
+import os
 from enum import Enum
 
 
@@ -9,9 +10,7 @@ class State(Enum):
     SUCCESS = "success"
 
 
-def create_commit_status(
-    owner: str, repo: str, sha: str, state: State, token: str
-) -> bool:
+def create_commit_status(owner: str, repo: str, sha: str, state: State) -> bool:
     """
     Create a commit status for a given SHA.
 
@@ -20,11 +19,12 @@ def create_commit_status(
     :param sha: SHA for which the commit status is created
     :param state: The state of the status.
     :param target_url: The target URL to associate with this tatus.
-    :param token: Token for authenticating to the GitHub REST API
     :return: True if commit status was successfully created, False otherwise
     """
 
     endpoint = f"https://api.github.com/repos/{owner}/{repo}/statuses/{sha}"
+
+    token = read_token_from_file("src/token.txt")
 
     headers = {
         "Accept": "application/vnd.github+json",
@@ -36,3 +36,21 @@ def create_commit_status(
     response = requests.post(endpoint, headers=headers, json=payload)
 
     return response.status_code == 201
+
+
+def read_token_from_file(filepath: str) -> str:
+    """
+    Read one line from a file.
+
+    :param filepath: Path to file
+    :return: The first line of the specified file
+    """
+    if os.path.exists(filepath):
+        file = open(filepath)
+        token = file.readline()
+        file.close()
+        return token
+    else:
+        raise Exception(
+            "No API token provided. Please create src/token.txt and provide the GitHub API token."
+        )
