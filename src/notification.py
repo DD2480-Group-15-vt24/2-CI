@@ -18,7 +18,6 @@ def create_commit_status(owner: str, repo: str, sha: str, state: State) -> bool:
     :param repo: The name of the repository without the .git extension. The name is not case sensitive.
     :param sha: SHA for which the commit status is created
     :param state: The state of the status.
-    :param target_url: The target URL to associate with this tatus.
     :return: True if commit status was successfully created, False otherwise
     """
 

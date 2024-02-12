@@ -48,6 +48,11 @@ def test_create_commit_status(mock_post, status_code, expected_result, tmp_path)
     mock_response.status_code = status_code
     mock_post.return_value = mock_response
 
+    src_dir = tmp_path / "src"
+    src_dir.mkdir()
+    token_file = src_dir / "token.txt"
+    token_file.write_text("token")
+
     owner = "owner"
     repo = "repo"
     sha = "1234"
