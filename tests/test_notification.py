@@ -22,7 +22,7 @@ def test_create_commit_status(mock_post, status_code, expected_result):
     state = State.SUCCESS
     token = "token"
 
-    result = create_commit_status(owner, repo, sha, state, token)
+    result = create_commit_status(owner, repo, sha, state)
 
     assert result == expected_result
 
