@@ -39,7 +39,7 @@ def read_token_from_file_failure(tmp_path):
     ],
 )
 @patch("requests.post")
-def test_create_commit_status(mock_post, status_code, expected_result, tmp_path):
+def test_create_commit_status(mock_post, status_code, expected_result):
     """
     Test that API requests to create commit statuses are correctly formated.
     Also, test that when receiving an API response, the function returns correctly based on response status code.
@@ -47,11 +47,6 @@ def test_create_commit_status(mock_post, status_code, expected_result, tmp_path)
     mock_response = MagicMock()
     mock_response.status_code = status_code
     mock_post.return_value = mock_response
-
-    src_dir = tmp_path / "src"
-    src_dir.mkdir()
-    token_file = src_dir / "token.txt"
-    token_file.write_text("token")
 
     owner = "owner"
     repo = "repo"

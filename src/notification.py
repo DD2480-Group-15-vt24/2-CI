@@ -50,6 +50,7 @@ def read_token_from_file(filepath: str) -> str:
         file.close()
         return token
     else:
-        raise Exception(
+        print(
             "No API token provided. Please create src/token.txt and provide the GitHub API token."
         )
+        return "NO_API_TOKEN"

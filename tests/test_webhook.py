@@ -57,12 +57,7 @@ def test_webhook_actions(
     mock_return,
     expected_status,
     expected_response,
-    tmp_path,
 ):
-    src_dir = tmp_path / "src"
-    src_dir.mkdir()
-    token_file = src_dir / "token.txt"
-    token_file.write_text("token")
     with patch(mock_function_path, return_value=mock_return) as _mock_function:
         response = client.post(
             endpoint,
