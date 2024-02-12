@@ -11,6 +11,18 @@ def client():
 
 
 @pytest.fixture
+def token_file(tmp_path):
+    """
+    Mock a token file
+    """
+    src_dir = tmp_path / "src"
+    src_dir.mkdir()
+    token_file = src_dir / "token.txt"
+    token_file.write_text("token")
+    return token_file
+
+
+@pytest.fixture
 def mock_clone_repo():
     with patch("main.clone_repo", return_value="/path/to/repo") as mock:
         yield mock
