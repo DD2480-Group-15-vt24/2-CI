@@ -1,7 +1,8 @@
 from .cmd import run
+from typing import Tuple
 
 
-def run_black_format_check(repo_dir: str) -> bool:
+def run_black_format_check(repo_dir: str) -> Tuple[bool, str]:
     """
     Run Black in check mode to verify that the code is correctly formatted.
 

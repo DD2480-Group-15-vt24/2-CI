@@ -161,3 +161,4 @@ cython_debug/
 
 #GitHub API token
 src/token.txt
+*.db
