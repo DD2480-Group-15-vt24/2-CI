@@ -21,5 +21,16 @@ def insert_row(commit_hash, logs):
     conn.commit()
     conn.close()
     
+# Function to get all rows from SQLite database table
+    def get_all_rows():
+        conn = sqlite3.connect("ci.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT * history")
+        rows = cursor.fetchall()
+        conn.close()
+        return rows
+        
+        
+    
 if __name__ == "__main__":
     create_database()
