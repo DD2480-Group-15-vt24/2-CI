@@ -14,8 +14,8 @@ class State(Enum):
 
 class CIType:
     FORMAT = {
-        "context": "CI/CD",
-        "description": "CI pipeline result",
+        "context": "FORMAT",
+        "description": "Formatting pipeline result",
         # "target_url": "http://example.com/build/status",  # TODO: URL for more details (frontend)
     }
     TEST = {

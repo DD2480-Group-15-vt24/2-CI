@@ -16,34 +16,40 @@ def mock_clone_repo():
         yield mock
 
 
+@pytest.fixture
+def mock_github_status_response():
+    with patch("main.create_commit_status", return_value=None) as mock:
+        yield mock
+
+
 @pytest.mark.parametrize(
     "endpoint, mock_function_path, mock_return, expected_status, expected_response",
     [
         (
             "/webhook/format/",
             "main.run_black_format_check",
-            True,
+            (True, ""),
             200,
             {"status": "formatting check passed"},
         ),
         (
             "/webhook/format/",
             "main.run_black_format_check",
-            False,
+            (False, ""),
             422,
             {"detail": "formatting check failed"},
         ),
         (
             "/webhook/test/",
             "main.run_pytest_test_suite",
-            True,
+            (True, ""),
             200,
             {"status": "tests passed"},
         ),
         (
             "/webhook/test/",
             "main.run_pytest_test_suite",
-            False,
+            (False, ""),
             422,
             {"detail": "tests failed"},
         ),
@@ -54,6 +60,7 @@ def test_webhook_actions(
     mock_clone_repo,
     endpoint,
     mock_function_path,
+    mock_github_status_response,
     mock_return,
     expected_status,
     expected_response,
@@ -62,9 +69,18 @@ def test_webhook_actions(
         response = client.post(
             endpoint,
             json={
-                "repository": {"clone_url": "https://github.com/example/repo.git"},
+                "repository": {
+                    "name": "myname",
+                    "clone_url": "https://github.com/example/repo.git",
+                    "owner": {
+                        "login": "mock_owner",
+                    },
+                },
                 "ref": "refs/heads/main",
-                "head_commit": {"id": "1234"},
+                "head_commit": {
+                    "id": "1234",
+                    "message": "test commit",
+                },
             },
         )
         assert response.status_code == expected_status

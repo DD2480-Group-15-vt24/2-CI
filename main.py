@@ -11,7 +11,6 @@ from src.pytest import run_pytest_test_suite
 from src.github import create_commit_status, State, CIType
 from src.db import database, webhook_events, insert_webhook_event
 
-
 app = FastAPI()
 
 
@@ -27,12 +26,12 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
+@app.router.on_event("startup")
 async def startup():
     await database.connect()
 
 
-@app.on_event("shutdown")
+@app.router.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
 
