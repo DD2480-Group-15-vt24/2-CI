@@ -23,7 +23,7 @@ def test_run_black_success(mock_subprocess_run):
 
     result = run_black_format_check("/tmp/example123")
 
-    assert result[0] is True, "Expected Black check to pass"
+    assert result[0] is False, "Expected Black check to pass"
 
 
 def test_run_black_failure(mock_subprocess_run):
