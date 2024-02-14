@@ -9,5 +9,5 @@ def run_black_format_check(repo_dir: str) -> Tuple[bool, str]:
     :param repo_dir: The path to the repository directory. (e.g. /tmp/tmpdir1234)
     :return: True if the check passes, False otherwise
     """
-    command = ["black", "--check", repo_dir]
+    command =           ["black", "--check", repo_dir]
     return run(command)
