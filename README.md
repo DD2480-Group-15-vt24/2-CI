@@ -110,9 +110,9 @@ url: https://stork-clever-oyster.ngrok-free.app/static/index.html
 
 ## Contributors
 
-- Olle Jenrström
+- Olle Jenrström 
 - Love Lindgren
-- Selma Özdere¨
+- Selma Özdere
 - Albin Wikström Kempe
 - Siham Shahoud
 
@@ -121,12 +121,38 @@ url: https://stork-clever-oyster.ngrok-free.app/static/index.html
 
 The work was devided as follows:
 
-Olle Jenrström:
+Olle Jenrström: 
+1- Initial commit
+2- Setup initial repo structure
+3- Add fastapi server that formats repository on webhook
+4- Add another endpoint that tests the repo using pytest 
+5- Feat: added sqlite database
+6- Feat: setup web history interface
 
 Love Lindgren:
+1- Fix:Changed code to run on python 3.8.10
+2- Revert: Accidentally committed to main
+3- Fix: Substitute python version to 3.8.10 
+4- Changed network port
+5- Set up webhook
+
 
 Selma Özdere:
+1- doc:Add 'Way of Working' section to README 
+2- feat: Add HTML documentation files for project documentation
+3- fix: HTML file for main.py
+4- fix: deleted MacOS specific files
 
 Albin Wikström Kempe:
+1- Feat: Set commit status using GitHub REST API 
+2- Fix: Read API token from file
 
 Siham Shahoud:
+1- Fix: Added operating directives and a new contributor
+2- Build history:
+    2.1 Feat: added sqlite database
+    2.2 Fix:Insert row to db and call it in main
+    2.3 Fix: Added get_all_rows function to db
+3- Doc: Add statement of contributer
+        Fix: Update README.md
+
