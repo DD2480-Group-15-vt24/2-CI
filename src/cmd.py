@@ -1,7 +1,10 @@
 import subprocess
+from typing import (
+    List,
+)  # Note: Python version 3.8.10 does not support subscript notation. Workaround: use List type from typing module
 
 
-def run(command: list[str]) -> bool:
+def run(command: List[str]) -> bool:
     """
     Run a command and return True if it succeeds, False otherwise.
 

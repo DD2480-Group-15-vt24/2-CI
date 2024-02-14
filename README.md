@@ -17,28 +17,47 @@
 ├── docs/                       # Documentation
 │   └── README.md               # Technical documentatoion
 │
-├── main.py                 	# Main entry point of the program
+├── main.py                     # Main entry point of the program
 ├── requirements.txt            # Project dependencies
 └── README.md                   # This file. General project documentation
 ```
+
+## Prerequisites
+
+### 1. Install pyenv
+
+`brew install pyenv`
+
+### 2 Update PATH environment
+
+`export PATH="$HOME/.pyenv/shims:$PATH"`
+
+### 3 Install and set local python version
+
+`pyenv install 3.8.10`
+`pyenv local 3.8.10`
 
 ## Quickstart
 
 ### 1. Create a virtual envrionment called `venv`
 
-`python3 -m venv venv`
+Mac/Linux: `python3 -m venv venv`
+Windows:    `python -m venv venv`
 
 ### 2. Activate the venv
 
-`source venv/bin/activate`
+Mac/Linux: `source venv/bin/activate`
+Windows:   `venv/bin/Activate.ps1`
 
 ### 3. Install the dependencies
 
-`python3 -m pip install -r requirements.txt`
+Mac/Linux:`python3 -m pip install -r requirements.txt`
+Windows:  `python -m pip install -r requirements.txt`
 
 ### 4. Run the server
 
-`uvicorn main:app --reload`
+Mac/Linux:  `uvicorn main:app --reload`
+Windows:    `uvicorn main:app --reload`
 
 ## Code style
 
@@ -48,7 +67,9 @@ Black is used for formatting the procjet. Format the code by using `black .`
 
 ## Running the test suite
 
-Run `pystest` from the root
+Mac/Linux: Run `pytest` from the root
+Windows:Run `pytest` from the root
+
 
 ## How to contribute
 
@@ -76,14 +97,21 @@ Open a Pull Request (PR): Go to the original repository on GitHub and open a pul
 
 ## Way of working
 
-TODO...
+Based on the Essence standard v1.2 criteria for evaluating a team's way of working, our team is currently at the "In Use" stage because we have picked the main practices and tools we need to work together, and we have atred using them in our work.
+
+We are still a new team and are still facing some challenges when it comes to communicating effectively, this is still because we use Discord poorly and the language barrier.
+
+To move to the "In Place" and "Working well" the team we mainly have to focus on communicating, and doing so on a daily basis. This to get to know how all of us work and to see the work-progress. We also have to write clearer issues and work trough the more complicated/unclear instructions together. 
+
 
 ## Contributors
 
 - Olle Jenrström
 - Love Lindgren
-- Selma Özdere
+- Selma Özdere¨
+- Albin Wikström Kempe
 - Siham Shahoud
+
 
 # Statement of contribution
 
@@ -93,6 +121,8 @@ Olle Jenrström:
 
 Love Lindgren:
 
-Siham Shahoud:
-
 Selma Özdere:
+
+Albin Wikström Kempe:
+
+Siham Shahoud:

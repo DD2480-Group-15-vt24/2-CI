@@ -1,5 +1,6 @@
 import subprocess
 import pytest
+import sys
 from unittest.mock import patch, MagicMock
 from src.pytest import run_pytest_test_suite
 
@@ -37,3 +38,18 @@ def test_run_black_failure(mock_subprocess_run):
     result = run_pytest_test_suite("/tmp/example123")
 
     assert result is False, "Expected pytest tests to fail"
+
+
+def test_python_version():
+    """
+    Test python version and return True only if python version is 3.8.10
+    """
+
+    expected_value = "3.8.10"
+    actual_value = (
+        f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    )
+
+    assert (
+        actual_value == expected_value
+    ), f"Expected python version {expected_value}, but found {actual_value}"
