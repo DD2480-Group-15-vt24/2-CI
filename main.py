@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request, HTTPException
 from src.black import run_black_format_check
 from src.git import clone_repo
 from src.pytest import run_pytest_test_suite
-from db import insert_row, get_all_rows
+from src.db import insert_row, get_all_rows
 from src.notification import create_commit_status, State
 
 # Repository settings
