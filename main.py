@@ -10,6 +10,9 @@ app = FastAPI()
 
 @app.post("/webhook/format/")
 async def webhook_format(request: Request):
+    """
+    Get github repo, set repo status and check formatting.
+    """
     payload = await request.json()
     sha = payload["head_commit"]["id"]
     owner = payload["repository"]["owner"]["login"]
@@ -28,6 +31,9 @@ async def webhook_format(request: Request):
 
 @app.post("/webhook/test/")
 async def webhook_test(request: Request):
+    """
+    Get github repo, set repo status and run tests.
+    """
     payload = await request.json()
     sha = payload["head_commit"]["id"]
     owner = payload["repository"]["owner"]["login"]
