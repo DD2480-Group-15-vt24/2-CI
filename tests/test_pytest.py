@@ -14,9 +14,9 @@ def mock_subprocess_run():
         yield mock_run
 
 
-def test_run_black_success(mock_subprocess_run):
+def test_run_pytest_success(mock_subprocess_run):
     """
-    Test that clone_and_run_black returns True when Black check passes
+    Test that clone_and_run_black returns True when pytest check passes
     """
 
     # Mock subprocess.run to simulate Black check passing
@@ -24,20 +24,20 @@ def test_run_black_success(mock_subprocess_run):
 
     result = run_pytest_test_suite("/tmp/example123")
 
-    assert result is True, "Expected pytest tests to pass"
+    assert result[0] is True, "Expected pytest tests to pass"
 
 
-def test_run_black_failure(mock_subprocess_run):
+def test_run_pytest_failure(mock_subprocess_run):
     """
     Test that clone_and_run_black returns False when Black check fails
     """
-    # Mock subprocess.run to simulate Black check failing
+    # Mock subprocess.run to simulate pytest check failing
     cmd = ["pytest", "."]
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(1, cmd=cmd)
 
     result = run_pytest_test_suite("/tmp/example123")
 
-    assert result is False, "Expected pytest tests to fail"
+    assert result[0] is False, "Expected pytest tests to fail"
 
 
 def test_python_version():

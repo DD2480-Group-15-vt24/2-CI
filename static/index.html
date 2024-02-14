@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+	#logs {
+	    margin-top: 50px;
+	
+	}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {background-color: #f9f9f9;}
+    </style>
+</head>
+<body>
+    <h2 id="header"></h2>
+    <table id="eventsTable">
+        <thead>
+            <tr>
+                <th>Commit Hash</th>
+                <th>Name</th>
+                <th>Commit Message</th>
+                <th>Datetime</th>
+                <th>Success</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Events will be inserted here -->
+        </tbody>
+	
+    </table>
+
+<code id="logs">
+    <!-- Logs will be inserted here -->
+</code>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+	    const urlParams = new URLSearchParams(window.location.search);
+            const commitHash = urlParams.get('commit_hash'); // Get 'commit_hash' query parameter
+	    if(!commitHash) {
+		fetchEvents();
+            }
+	    else {
+            	fetchOneEvent(commitHash);
+	    }
+        });
+
+        async function fetchOneEvent(commitHash) {
+            const response = await fetch('https://stork-clever-oyster.ngrok-free.app/events/' + commitHash);
+            const event = await response.json();
+
+            const tableBody = document.getElementById('eventsTable').getElementsByTagName('tbody')[0];
+		let row = tableBody.insertRow();
+		let cell1 = row.insertCell(0);
+		let cell2 = row.insertCell(1);
+		let cell3 = row.insertCell(2);
+		let cell4 = row.insertCell(3);
+		let cell5 = row.insertCell(4);
+
+
+		cell1.textContent = event.commit_hash;
+		cell2.textContent = event.name;
+		cell3.textContent = event.commit_message;
+		cell4.textContent = new Date(event.datetime).toLocaleString();
+		cell5.textContent = event.success ? "✅" : "❌";
+		const logsDiv = document.getElementById('logs'); 
+		logsDiv.textContent = event.logs || 'No logs'
+		const header = document.getElementById('header'); 
+		header.textContent = "Event: " + commitHash 
+        }
+        async function fetchEvents() {
+            const response = await fetch('https://stork-clever-oyster.ngrok-free.app/events');
+            const events = await response.json();
+
+            const tableBody = document.getElementById('eventsTable').getElementsByTagName('tbody')[0];
+            events.forEach(event => {
+                let row = tableBody.insertRow();
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
+                let cell5 = row.insertCell(4);
+
+
+		cell1.innerHTML = `<a href="${window.location.href.split('?')[0]}?commit_hash=${event.commit_hash}">${event.commit_hash}</a>`;
+                cell2.textContent = event.name;
+                cell3.textContent = event.commit_message;
+                cell4.textContent = new Date(event.datetime).toLocaleString();
+                cell5.textContent = event.success ? "✅" : "❌";
+            });
+	    const header = document.getElementById('header'); 
+	    header.textContent = "Webhook Events"
+        }
+    </script>
+</body>
+</html>
+

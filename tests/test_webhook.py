@@ -28,28 +28,28 @@ def mock_github_status_response():
         (
             "/webhook/format/",
             "main.run_black_format_check",
-            True,
+            (True, ""),
             200,
             {"status": "formatting check passed"},
         ),
         (
             "/webhook/format/",
             "main.run_black_format_check",
-            False,
+            (False, ""),
             422,
             {"detail": "formatting check failed"},
         ),
         (
             "/webhook/test/",
             "main.run_pytest_test_suite",
-            True,
+            (True, ""),
             200,
             {"status": "tests passed"},
         ),
         (
             "/webhook/test/",
             "main.run_pytest_test_suite",
-            False,
+            (False, ""),
             422,
             {"detail": "tests failed"},
         ),
@@ -77,7 +77,10 @@ def test_webhook_actions(
                     },
                 },
                 "ref": "refs/heads/main",
-                "head_commit": {"id": "1234"},
+                "head_commit": {
+                    "id": "1234",
+                    "message": "test commit",
+                },
             },
         )
         assert response.status_code == expected_status

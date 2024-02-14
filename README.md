@@ -2,6 +2,7 @@
 
 ## File structure
 
+
 ```
 2-CI/
 │
@@ -102,6 +103,9 @@ Based on the Essence standard v1.2 criteria for evaluating a team's way of worki
 We are still a new team and are still facing some challenges when it comes to communicating effectively, this is still because we use Discord poorly and the language barrier.
 
 To move to the "In Place" and "Working well" the team we mainly have to focus on communicating, and doing so on a daily basis. This to get to know how all of us work and to see the work-progress. We also have to write clearer issues and work trough the more complicated/unclear instructions together. 
+
+## Build history
+url: https://stork-clever-oyster.ngrok-free.app/static/index.html
 
 
 ## Contributors
